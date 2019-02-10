@@ -1,0 +1,93 @@
+import pandas as pd
+import numpy as np
+from pandas import DataFrame,Series
+import os
+import csv
+import json
+os.getcwd()
+import json
+with open('amsterdam.txt') as json_data:
+    d=json.load(json_data)
+    print(d)
+    len(d)
+    vals=d.values()
+    d.items()
+    d.keys()
+    d.values()
+    print(len(d))
+    vals = d.values()
+    print(d.keys())
+    print(dir(d))
+    my=pd.dataframe(d)
+    my
+    my2=pd.DataFrame(d)
+    my2
+    my2.isnull()
+    print(my2.isnull().sum())
+    g = my2.columns.to_series().groupby(my2.dtypes).groups
+    g
+    avg = lambda my2: object(sum(price)) / len(price)
+    avg
+    print(avg)
+    my3=(my2.price)
+    my3
+    
+    avg=sum(my3.(price))/len(price)
+    avg
+    my2['price'].value_counts()
+    my2.groupby('price').agg({'price':'sum'})
+    my2['price'].describe()
+    my2.describe()
+    my5=my2[my2.columns[9:11]].replace('[\$,]', '', regex=True).astype(float)
+    my2['price'].describe()
+    my2.dropna( axis = 0 , inplace= True)
+    my2
+    my5=my2.replace({'\,':''}, regex=True).replace({'\$':''}, regex=True)
+    my5.price = my5.price.astype(float)
+    my5.dtypes
+    my5['price'].describe()
+    desred_decimals = 3   
+    my5['price'] = my5['price'].apply(lambda x: round(x,desred_decimals))
+    my5['price'].describe()
+    np.percentile(my5['price'],99)
+    my5.dtypes
+    x=my5.drop('price',axis=1)
+    y=my5['price']
+    x=pd.get_dummies(x)
+    x
+    df=pd.DataFrame(d)
+    df
+    for index,row in my5.iterrows():
+    if(row['price'] > 440):
+        my6 = my5.drop(index)
+        my6
+        np.percentile(my6['price'],90)
+        x=my5.drop('accommodates',axis=1)
+         y=my5['accommodates']
+         x.head()
+         x=pd.get_dummies(x)
+         x
+         from sklearn.model_selection import train_test_split
+         x_train,x_test,y_train,y_test=train_test_split(x,y,test_size=0.3,random_state=200)
+         from sklearn.ensemble import BaggingClassifier
+         from sklearn.tree import DecisionTreeClassifier
+         clf=BaggingClassifier(oob_score=True,n_jobs=-1,n_estimators=20,random_state=200,base_estimator=DecisionTreeClassifier())
+         clf.fit(x_train,y_train)
+         clf.oob_score_
+         clf.score(x_test,y_test)
+         for w in range (30,600,10):
+    clf=BaggingClassifier(oob_score=True,n_jobs=1,n_estimators=w,random_state=200,base_estimator=DecisionTreeClassifier())
+    clf.fit(x_train,y_train)
+    oob=clf.oob_score_
+    Print 'For n_estimators ='+str(w)
+    Print 'OOB Score is '+str(oob)
+    Print '***********************'
+    from sklearn.ensemble import RandomForestClassifier
+    clf2=RandomForestClassifier(n_estimators=80,oob_score=True,n_jobs=-1,random_state=200)
+    clf2.fit(x_train,y_train)
+    clf2.oob_score_
+    clf2.feature_importances_
+         
+
+    
+
